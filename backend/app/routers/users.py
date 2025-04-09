@@ -7,7 +7,9 @@ class User(BaseModel):
     username: str
     email: EmailStr
 
-    @field_validator("username")
+    @field_validator(
+        "username",
+    )
     @classmethod
     def user_name(cls, username: Any):
         pass
