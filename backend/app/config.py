@@ -11,6 +11,10 @@ load_dotenv(dotenv_path=env_path)
 
 
 class Settings:
+    """
+    Класс содержащий атрибуты с настройками проекта
+    """
+
     PROJECT_NAME: str = "SMask"
     PROJECT_VERSION: str = "0.0.1"
 
@@ -21,6 +25,7 @@ class Settings:
         "POSTGRES_PORT", 5432
     )  # default postgres port is 5432
     POSTGRES_DB = os.getenv("POSTGRES_DB", "tdd")
+    DATABASE_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}:{POSTGRES_PORT}/{POSTGRES_DB}"
 
 
 setting = Settings()

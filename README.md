@@ -11,20 +11,17 @@ GRANT ALL PRIVILEGES ON DATABASE SMask TO SMask_user;
 
 
 
-# ...директория_проекта/yatube/yatube/.env
-# Укажите, что используете postgresql
-DB_ENGINE=django.db.backends.postgresql
+# ...директория_проекта/SMask/.env
 # Укажите имя созданной базы данных
-DB_NAME=SMask
+POSTGRES_DB=SMask
 # Укажите имя пользователя
 POSTGRES_USER=SMask_user
 # Укажите пароль для пользователя
 POSTGRES_PASSWORD=xxxyyyzzz
 # Укажите localhost
-DB_HOST=127.0.0.1
+DB_POSTGRES_SERVER=127.0.0.1
 # Укажите порт для подключения к базе
-DB_PORT=5432
+POSTGRES_PORT=5432
 
 
 
-no
