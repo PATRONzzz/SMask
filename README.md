@@ -1,7 +1,14 @@
 # SMask
 Smart task management system with analytics
 
-CREATE DATABASE yatube;
+
+sudo apt install postgresql postgresql-contrib -y 
+
+sudo -u postgres psql 
+
+
+
+CREATE DATABASE SMask;
 # При успешном создании вернется CREATE DATABASE 
 
 -- Создайте пользователя SMask_user и придумайте свой пароль, посложнее, чем в примере
@@ -13,9 +20,9 @@ GRANT ALL PRIVILEGES ON DATABASE SMask TO SMask_user;
 
 # ...директория_проекта/SMask/.env
 # Укажите имя созданной базы данных
-POSTGRES_DB=SMask
+POSTGRES_DB=smask
 # Укажите имя пользователя
-POSTGRES_USER=SMask_user
+POSTGRES_USER=smask_user
 # Укажите пароль для пользователя
 POSTGRES_PASSWORD=xxxyyyzzz
 # Укажите localhost

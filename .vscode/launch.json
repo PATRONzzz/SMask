@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "module": "uvicorn",
-            "args": [
+            "args": [ 
                 "backend.app.main:app",
                 "--reload"
             ],
