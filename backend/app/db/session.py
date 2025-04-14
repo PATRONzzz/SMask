@@ -1,4 +1,4 @@
-from app.config import setting
+from smask.config import setting
 from sqlalchemy import create_engine
 
 SQLALCHEMY_DATABASE_URL = setting.DATABASE_URL

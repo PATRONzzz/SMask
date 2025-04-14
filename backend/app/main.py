@@ -2,9 +2,9 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse
 
-from backend.app.config import setting
-from backend.app.db.base_class import Base
-from backend.app.db.session import engine
+from smask.config import setting
+from db.base_class import Base
+from db.session import engine
 
 app = FastAPI()
 
