@@ -1,10 +1,10 @@
-import uvicorn
-from fastapi import FastAPI
-from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse
-
-from smask.config import setting
+# import uvicorn
 from db.base_class import Base
 from db.session import engine
+from fastapi import FastAPI
+
+# from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse
+from smask.config import setting
 
 app = FastAPI()
 
