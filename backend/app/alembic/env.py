@@ -1,7 +1,7 @@
 from logging.config import fileConfig
 
 from alembic import context
-from config import setting
+from smask.config import setting
 from db.base_class import Base
 from sqlalchemy import engine_from_config, pool
 
