@@ -1,5 +1,5 @@
 # import uvicorn
-from db.base_class import Base
+from db.base import Base
 from db.session import engine
 from fastapi import FastAPI
 
