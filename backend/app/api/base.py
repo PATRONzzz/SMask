@@ -1,0 +1,8 @@
+from pydoc import apropos
+
+from fastapi import APIRouter
+
+from api import route_user
+
+api_router = APIRouter()
+api_router.include_router(route_user.router, prefix="", tags=["users"])

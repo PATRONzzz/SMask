@@ -1,9 +1,10 @@
 from logging.config import fileConfig
 
 from alembic import context
-from smask.config import setting
-from db.base_class import Base
+from core.config import setting
 from sqlalchemy import engine_from_config, pool
+
+from db.base_class import Base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

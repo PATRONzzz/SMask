@@ -1,6 +1,6 @@
 from typing import Generator
 
-from smask.config import setting
+from core.config import setting
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -16,7 +16,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def get_db() -> Generator:
     try:
-        db = SessionLocal
+        db = SessionLocal()
         yield db
     finally:
         db.close()
