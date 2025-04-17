@@ -1,6 +1,6 @@
 import enum
+from datetime import timedelta
 
-from db.base_class import Base
 from sqlalchemy import (
     Column,
     DateTime,
@@ -12,6 +12,8 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
+
+from db.base_class import Base
 
 
 class TaskStatus(enum.Enum):
@@ -49,7 +51,11 @@ class Task(Base):
         ForeignKey("users.id"),
     )
     created_at = Column(DateTime, server_default=func.now())
-    deadline = Column(DateTime)
+    deadline = Column(
+        "Срок",
+        DateTime,
+        server_default=func.now() + timedelta(days=1),
+    )
 
     # Связи
     owner = relationship("User", back_populates="tasks")

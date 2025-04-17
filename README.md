@@ -32,3 +32,8 @@ POSTGRES_PORT=5432
 
 
 
+
+➜  app git:(main) ✗ mkdir -p $(pwd)/alembic/versions                
+chmod -R 755 $(pwd)/alembic/versions
+
+➜  app git:(main) ✗ alembic revision --autogenerate -m "custom user"

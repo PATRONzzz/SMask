@@ -8,10 +8,10 @@ class UserCreate(BaseModel):
     password_confirm: str
 
     @field_validator("password_confirm")
-    def passwords_match(cls, v, values):
-        if "password" in values and v != values["password"]:
+    def passwords_password_confirm(cls, values, password_confirm):
+        if "password" in values and password_confirm != values["password"]:
             raise ValueError("Passwords do not match")
-        return v
+        return values
 
 
 class ShowUser(BaseModel):
