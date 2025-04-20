@@ -52,7 +52,6 @@ class Task(Base):
     )
     created_at = Column(DateTime, server_default=func.now())
     deadline = Column(
-        "Срок",
         DateTime,
         server_default=func.now() + timedelta(days=1),
     )

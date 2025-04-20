@@ -1,4 +1,4 @@
-from turtle import title
+from datetime import datetime
 from typing import Any, Optional
 
 from pydantic import BaseModel, EmailStr, Field, model_validator
@@ -19,3 +19,17 @@ class TaskCreate(BaseModel):
             else:
                 raise ValueError("NO DATA")
         return data
+
+
+class ShowTask(BaseModel):
+    id: int
+    owner_id: int
+    title: str
+    task: str
+    description: Optional[str]
+    is_active: bool
+    created_at: datetime
+    deadline: datetime
+
+    class Config:
+        orm_mode = True
