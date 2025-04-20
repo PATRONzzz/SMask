@@ -3,6 +3,8 @@ from typing import Any, Optional
 
 from pydantic import BaseModel, EmailStr, Field, model_validator
 
+from db.models.task import TaskPriority, TaskStatus
+
 
 class TaskCreate(BaseModel):
     title: str
@@ -27,7 +29,8 @@ class ShowTask(BaseModel):
     title: str
     task: str
     description: Optional[str]
-    is_active: bool
+    status: TaskStatus
+    priority: TaskPriority
     created_at: datetime
     deadline: datetime
 

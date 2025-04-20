@@ -1,5 +1,3 @@
-from asyncio import Task
-
 from fastapi import APIRouter, Depends, HTTPException, status
 
 from sqlalchemy.orm import Session
@@ -11,6 +9,7 @@ from schemas.task import ShowTask, TaskCreate
 router = APIRouter()
 
 
+# Создание задачи
 @router.post(
     "/tasks",
     status_code=status.HTTP_201_CREATED,
@@ -21,6 +20,10 @@ def create_task(task: TaskCreate, db: Session = Depends(get_db)):
     return task
 
 
+# Получение списка задач
+
+
+# Получение одной задачи
 @router.get("/tasks/{id}", response_model=ShowTask)
 def get_task(id: int, db: Session = Depends(get_db)):
     task = retreive_task(id=id, db=db)
