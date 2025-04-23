@@ -47,6 +47,4 @@ class UpdateTask:
     title: Optional[str]
     task: Optional[str]
     description: Optional[str]
-
-
-#
+    defadline: Optional[datetime]
