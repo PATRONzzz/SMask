@@ -6,6 +6,7 @@ from pydantic import BaseModel, EmailStr, Field, model_validator
 from db.models.task import TaskPriority, TaskStatus
 
 
+# Создание задачи
 class TaskCreate(BaseModel):
     title: str
     task: str
@@ -23,6 +24,7 @@ class TaskCreate(BaseModel):
         return data
 
 
+# Получение задачи
 class ShowTask(BaseModel):
     id: int
     owner_id: int
@@ -36,3 +38,15 @@ class ShowTask(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+# Обновление задачи
+class UpdateTask:
+    status: Optional[TaskStatus]
+    priority: Optional[TaskPriority]
+    title: Optional[str]
+    task: Optional[str]
+    description: Optional[str]
+
+
+#

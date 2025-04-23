@@ -21,6 +21,7 @@ def include_router(app: FastAPI):
     app.include_router(api_router)
 
 
+# Добавляем маршруты для API
 def add_corsmiddleware(app: FastAPI):
     app.add_middleware(
         CORSMiddleware,
@@ -31,6 +32,7 @@ def add_corsmiddleware(app: FastAPI):
     )
 
 
+# Создаем экземпляр приложения
 def start_application():
     app = FastAPI(title=setting.PROJECT_NAME, version=setting.PROJECT_VERSION)
     create_tables()
@@ -39,6 +41,7 @@ def start_application():
     return app
 
 
+# Создаем экземпляр приложения
 app = start_application()
 
 

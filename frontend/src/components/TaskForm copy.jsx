@@ -37,7 +37,7 @@ const TaskForm = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/tasks`);
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/tasks`);
         setTasks(response.data);
         setLoading(false);
       } catch (error) {
@@ -47,7 +47,6 @@ const TaskForm = () => {
     };
     fetchTasks();
   }, []);
-
   if (loading) {   
     return <div>Loading...</div>;  } 
 
@@ -189,6 +188,8 @@ const TaskForm = () => {
             </Accordion>
           ))}
         </List>
+      
+      
       </Container>
     </div>
   );
