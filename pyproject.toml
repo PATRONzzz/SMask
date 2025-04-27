@@ -12,6 +12,7 @@ dependencies = [
     "pwdlib[argon2]>=0.2.1",
     "pydantic[email]>=2.11.2",
     "python-dotenv>=1.1.0",
+    "python-multipart>=0.0.20",
     "sqlalchemy>=2.0.40",
     "sqlalchemy2-stubs>=0.0.2a38",
     "uvicorn>=0.34.0",

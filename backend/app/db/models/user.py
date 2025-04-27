@@ -31,4 +31,6 @@ class User(Base):
     role = Column(Enum(UserRole), default=UserRole.USER)
 
     # Связи
-    tasks = relationship("Task", back_populates="owner")
+    tasks = relationship(
+        "Task", back_populates="owner", cascade="all, delete-orphan"
+    )

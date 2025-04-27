@@ -9,6 +9,7 @@ from db.session import engine
 
 app = FastAPI()
 
+
 # Разрешенные источники
 origins = ["http://localhost:3000"]
 
@@ -43,8 +44,3 @@ def start_application():
 
 # Создаем экземпляр приложения
 app = start_application()
-
-
-@app.get("/")
-def home():
-    return {"Hello": "World"}
