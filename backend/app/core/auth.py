@@ -12,7 +12,7 @@ router = APIRouter()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
-class User(BaseModel):
+class UserTest(BaseModel):
     username: str
     email: str | None = None
     full_name: str | None = None
@@ -20,7 +20,7 @@ class User(BaseModel):
 
 
 def fake_decode_token(token):
-    return User(
+    return UserTest(
         username=token + "fakedecoded",
         email="john@example.com",
         full_name="John Doe",
@@ -34,6 +34,6 @@ def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
 
 @router.get("/users/me")
 def read_users_me(
-    current_user: Annotated[User, Depends(get_current_user)],
+    current_user: Annotated[UserTest, Depends(get_current_user)],
 ):
     return current_user
