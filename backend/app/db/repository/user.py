@@ -2,10 +2,10 @@ from core.hashing import Hasher
 from sqlalchemy.orm import Session
 
 from db.models.user import User
-from schemas.user import UserCreate
+from schemas.user import User
 
 
-def create_new_user(user: UserCreate, db: Session):
+def create_new_user(user: User, db: Session):
     user = User(
         username=user.username,
         email=user.email,
