@@ -1,19 +1,22 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Annotated
 
-from fastapi import Depends
-from fastapi.security import OAuth2PasswordBearer
+from fastapi import Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
-from jose import JWTError, jwt
+from jose import jwt
+from jwt.exceptions import InvalidTokenError
 from pydantic import BaseModel
-from db.session import get_db
 from sqlalchemy.orm import Session
-from fastapi import FastAPI, HTTPException, status
-from fastapi.security import OAuth2PasswordRequestForm
 
+from core.hashing import Hasher
+from db.models.user import User
+from db.repository.user import get_user_by_username
+from db.session import get_db
 
+# Временно здесь
+SECRET_KEY = "ea07b37ac9e546f1601de6c553a7359728c5e4645b62b7bb4289a7ddb44a6944"
 
-SECRET_KAY = "ea07b37ac9e546f1601de6c553a7359728c5e4645b62b7bb4289a7ddb44a6944"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
@@ -30,20 +33,25 @@ class TokenData(BaseModel):
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
-def get_user(username: str,  db: Session = Depends(get_db)):
-    (user: User, db: Session = Depends(get_db)):
-    user = create_new_user(user=user, db=db)
+def get_user(username: str, db: Session = Depends(get_db)) -> User:
+    user = get_user_by_username(username=username, db=db)
+    if not user:
+        raise HTTPException(
+            detail=f"User with username {username} does not exist.",
+            status_code=status.HTTP_404_NOT_FOUND,
+        )
     return user
-    if username in db:
-        user_dict = db[username]
-        return UserInDB(**user_dict)
 
 
-def authenticate_user(fake_db, username: str, password: str):
-    user = get_user(fake_db, username)
+def authenticate_user(
+    username: str,
+    password: str,
+    db: Session = Depends(get_db),
+) -> User | bool:
+    user = get_user(username=username, db=db)
     if not user:
         return False
-    if not verify_password(password, user.hashed_password):
+    if not Hasher.verify_password(password, user.password):
         return False
     return user
 
@@ -59,7 +67,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     return encoded_jwt
 
 
-async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
+def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
