@@ -1,6 +1,6 @@
-from core.hashing import Hasher
 from sqlalchemy.orm import Session
 
+from core.hashing import Hasher
 from db.models.user import User
 
 
@@ -17,7 +17,7 @@ def create_new_user(user: User, db: Session):
     return user
 
 
-# Получение пользователя по имени
-def get_user_by_username(username: str, db: Session):
-    user = db.query(User).filter(User.username == username).first()
+# Получение пользователя по email
+def get_user_by_email(email: str, db: Session) -> User | None:
+    user = db.query(User).filter(User.email == email).first()
     return user
