@@ -21,3 +21,9 @@ def create_new_user(user: User, db: Session):
 def get_user_by_email(email: str, db: Session) -> User | None:
     user = db.query(User).filter(User.email == email).first()
     return user
+
+
+# Получение пользователя по username
+def get_user_by_username(username: str, db: Session) -> User | None:
+    user = db.query(User).filter(User.username == username).first()
+    return user
